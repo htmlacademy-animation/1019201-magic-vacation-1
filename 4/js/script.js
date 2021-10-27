@@ -10687,13 +10687,17 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ __webpack_exports__["default"] = (() => {
-  const rulesItems = document.querySelectorAll(`.rules__item`);
-  const lastRulesItem = rulesItems[rulesItems.length - 1];
+  const rulesItem = document.querySelector(`.rules__item:last-child`);
   const rulesLink = document.querySelector(`.rules__link`);
 
-  lastRulesItem.addEventListener(`animationend`, (event) => {
-    if (event.animationName.match(/rules__item--text-fade-in/)) {
-      rulesLink.classList.add(`rules__link--active`);
+  rulesItem.addEventListener(`animationstart`, (event) => {
+    if (event.animationName === `rulesItemText`) {
+      rulesLink.classList.remove(`active`);
+    }
+  });
+  rulesItem.addEventListener(`animationend`, (event) => {
+    if (event.animationName === `rulesItemText`) {
+      rulesLink.classList.add(`active`);
     }
   });
 });
