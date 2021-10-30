@@ -1,8 +1,14 @@
 .screen {
   &.active {
+    .intro__title.active .intro__word>span,
+    .intro__date.active .intro__date-word>span {
+      opacity: 1;
+      transform: translate3d(0, 0, 0);
+    }
+
     .intro__message {
-        opacity: 1;
-        transform: translateY(0);
+      opacity: 1;
+      transform: translateY(0);
     }
 
     .form__field {

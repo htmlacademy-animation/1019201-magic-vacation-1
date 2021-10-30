@@ -11,6 +11,7 @@ import FullPageScroll from './modules/full-page-scroll';
 import pageLoaded from './modules/page-loaded.js';
 import animationBar from './modules/animation-bar.js';
 import rules from './modules/rules.js';
+import letterAnimation from './modules/letter-animation.js';
 
 // init modules
 mobileHeight();
@@ -24,6 +25,7 @@ social();
 pageLoaded();
 animationBar();
 rules();
+letterAnimation();
 
 const fullPageScroll = new FullPageScroll();
 document.addEventListener(`DOMContentLoaded`, () => {
