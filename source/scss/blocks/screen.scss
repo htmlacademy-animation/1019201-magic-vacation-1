@@ -1,3 +1,37 @@
+body {
+  &.load {
+    & .screen__footer {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  &.screen--toggling {
+    &::before {
+      height: 100%;
+      opacity: 1;
+    }
+  }
+}
+
+.load {
+  &::before {
+    content: "";
+    position: fixed;
+    z-index: 2;
+
+    height: 0;
+    width: 100%;
+
+    bottom: 0;
+    opacity: 0;
+
+    background-color: #5f458c;
+
+    transition: height 0.4s ease;
+  }
+}
+
 .screen {
   position: relative;
   display: flex;
@@ -46,7 +80,21 @@
   color: $c-dark;
   background-color: $c-light;
   z-index: 1;
-  transform: translateY(5rem);
+  transform: translateY(100%);
+  opacity: 0;
+  transition-property: opacity, transform;
+  transition-timing-function: cubic-bezier(0.5, 0.8, 1, 1);
+  transition-duration: 0.5s;
+  transition-delay: 0.6s;
+
+  .body--loaded .active & {
+    transform: translateY(0);
+    opacity: 1;
+  }
+
+  opacity: 0;
+  transform: translateY(100%);
+  transition: opacity 0.5s $half-time-large-distance, transform 0.5s $half-time-large-distance;
 
   @media (max-width: $tablet) and (orientation: portrait) {
     width: 3.5rem;
@@ -291,7 +339,8 @@
 
 .screen--story {
   background-color: $c-dark;
-  background-image: url("../img/slide1.jpg"), url("../img/slide2.jpg"), url("../img/slide3.jpg"), url("../img/slide4.jpg");
+  background-image: url("../img/slide1.jpg"), url("../img/slide2.jpg"), url("../img/slide3.jpg"),
+    url("../img/slide4.jpg");
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center;
@@ -303,11 +352,13 @@
 }
 
 .screen--prizes {
-  background-color: $c-dark;
-  position: relative;
+  &.active {
+    z-index: 2;
+  }
 }
 
 .screen--game {
+  position: relative;
   background-color: $c-dark;
 
   &::before {
@@ -354,4 +405,18 @@
 
 .screen--rules {
   background-color: $c-dark;
+}
+
+.story__title {
+  .space {
+    line-height: 1.4;
+  }
+
+  .space > .letter {
+    transform: translate3d(0, 14rem, 0);
+  }
+
+  &.active .space > .letter {
+    transform: translate3d(0, 1rem, 0);
+  }
 }

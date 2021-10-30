@@ -1,15 +1,12 @@
 export default () => {
-  const rulesItem = document.querySelector(`.rules__item:last-child`);
-  const rulesLink = document.querySelector(`.rules__link`);
+  const rulesItems = document.querySelectorAll(`.rules__item`);
 
-  rulesItem.addEventListener(`animationstart`, (event) => {
-    if (event.animationName === `rulesItemText`) {
-      rulesLink.classList.remove(`active`);
-    }
-  });
-  rulesItem.addEventListener(`animationend`, (event) => {
-    if (event.animationName === `rulesItemText`) {
+  if (rulesItems.length) {
+    const lastRulesItem = rulesItems[rulesItems.length - 1];
+
+    lastRulesItem.addEventListener(`animationend`, () => {
+      const rulesLink = document.querySelector(`.rules__link`);
       rulesLink.classList.add(`active`);
-    }
-  });
+    });
+  }
 };

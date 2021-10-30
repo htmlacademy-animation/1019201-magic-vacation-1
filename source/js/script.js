@@ -8,12 +8,11 @@ import result from './modules/result.js';
 import form from './modules/form.js';
 import social from './modules/social.js';
 import FullPageScroll from './modules/full-page-scroll';
-import pageLoaded from './modules/page-loaded.js';
-import animationBar from './modules/animation-bar.js';
-import rules from './modules/rules.js';
-import letterAnimation from './modules/letter-animation.js';
+import bodyOnload from "./modules/bodyOnload";
+import rules from "./modules/rules";
 
 // init modules
+bodyOnload();
 mobileHeight();
 slider();
 menu();
@@ -22,12 +21,7 @@ chat();
 result();
 form();
 social();
-pageLoaded();
-animationBar();
 rules();
-letterAnimation();
 
 const fullPageScroll = new FullPageScroll();
-document.addEventListener(`DOMContentLoaded`, () => {
-  fullPageScroll.init();
-});
+fullPageScroll.init();
