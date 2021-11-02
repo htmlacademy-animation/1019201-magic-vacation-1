@@ -25,13 +25,26 @@
 
 .intro__title {
   margin: 0;
-  max-width: 100rem;
+  max-width: 99rem;
   text-transform: uppercase;
   font-family: $font-alt;
   font-weight: 400;
   font-size: 12rem;
   line-height: 0.906;
   letter-spacing: -0.04em;
+
+  .space {
+    padding: 0.5rem 0;
+    margin: 0 -0.04em;
+  }
+
+  .space > .letter {
+    transform: translate3d(0, 14rem, 0);
+  }
+
+  &.active .space > .letter {
+    transform: translate3d(0, 1rem, 0);
+  }
 
   @media (min-width: $stop-scaling) {
     max-width: 990px;
@@ -41,6 +54,10 @@
   @media (max-width: $tablet) and (orientation: portrait) {
     max-width: 100%;
     font-size: 3.6rem;
+
+    &.active .space > .letter {
+      transform: translate3d(0, 1rem, 0);
+    }
   }
 
   @media (max-width: $tablet) and (orientation: landscape) {
@@ -86,30 +103,19 @@
   }
 }
 
-@keyframes intro__message--text-fade-in {
-  0% {
-    opacity: 0;
-    transform: translateY(50px);
-  }
-
-  90% {
-    opacity: 1;
-  }
-
-  100% {
-    transform: translateY(0);
-  }
-}
-
 .intro__message {
-  $intro__message--animation-duration: 0.45s;
   flex: none;
   width: 50.9rem;
   max-width: 50%;
   text-transform: uppercase;
   font-size: 2.4rem;
   line-height: 1.27;
-  animation: intro__message--text-fade-in $intro__message--animation-duration ease-out;
+  opacity: 0;
+  transform: translateY(2.5rem);
+
+  .active & {
+    animation: fadeInUp 1.5s forwards 1s;
+  }
 
   @media (min-width: $stop-scaling) {
     width: 509px;
@@ -158,6 +164,12 @@
   text-transform: uppercase;
   font-size: 2.4rem;
   line-height: 1.2;
+  opacity: 0;
+  visibility: hidden;
+
+  .active & {
+    animation: opacity 1.35s forwards 1.35s;
+  }
 
   @media (min-width: $stop-scaling) {
     margin: 0 0 16px;
@@ -167,7 +179,6 @@
 }
 
 .intro__date {
-  display: flex;
   margin: 0 0 0 -0.5rem;
   font-family: $font-alt;
   font-weight: 400;
@@ -175,23 +186,24 @@
   line-height: 0.906;
   letter-spacing: -0.04em;
 
+  .space {
+    padding: 0.5rem 0.1em;
+
+    &:first-child {
+      padding-left: 0;
+    }
+  }
+
+  .space > .letter {
+    transform: translate3d(0, 5.5rem, 0);
+  }
+
+  &.active .space > .letter {
+    transform: translate3d(0, 0, 0);
+  }
+
   @media (min-width: $stop-scaling) {
     margin: 0 0 0 -5px;
     font-size: 48px;
   }
-}
-
-.intro__word,
-.intro__date-word {
-  display: flex;
-  align-items: flex-end;
-  height: 1.1em;
-  overflow: hidden;
-}
-
-.intro__word>span,
-.intro__date-word>span {
-  opacity: 0;
-  transform: translate3d(0, 1em, 0);
-  display: inline-block;
 }

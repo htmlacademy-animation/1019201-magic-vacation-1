@@ -1,3 +1,12 @@
+body {
+  &.load {
+    & .page-header__logo {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+}
+
 .page-header {
   position: fixed;
   top: 0;
@@ -35,8 +44,17 @@
   padding: 1rem 0;
   width: 10rem;
   color: $c-light;
+
+  transform: translateX(-4rem);
   opacity: 0;
-  transform: translateX(-3rem);
+  transition: opacity, transform;
+  transition-timing-function: cubic-bezier(0.5, 0.8, 1, 1);
+  transition-duration: 0.5s;
+
+  .body--loaded & {
+    transform: translateX(0);
+    opacity: 1;
+  }
 
   @media (min-width: $stop-scaling) {
     top: -5px;
@@ -98,13 +116,13 @@
     position: absolute;
     right: 0.8rem;
     height: 1px;
-    background-color: $c-dark;
+    background-color: var(--state-main);
   }
 
   &::before {
     top: 0.9rem;
     width: 1rem;
-    box-shadow: 0 0.6rem 0 0 $c-dark;
+    box-shadow: 0 0.6rem 0 0 var(--state-main);
   }
 
   &::after {
@@ -132,6 +150,12 @@
 .page-header__nav {
   display: flex;
   align-items: center;
+  opacity: 0;
+  transition: opacity 0.5s cubic-bezier(0.5, 0.8, 1, 1) 0.5s;
+
+  .body--loaded & {
+    opacity: 1;
+  }
 
   @media (max-width: $tablet) and (orientation: portrait) {
     position: fixed;
@@ -162,7 +186,7 @@
     align-items: flex-start;
     padding: 2rem 3.5rem;
     max-height: calc(var(--vh, 1vh) * 100);
-    color: $c-dark;
+    color: var(--state-main);
     background-color: $c-light;
     overflow-y: auto;
 
@@ -179,7 +203,6 @@
   font-size: 1.2rem;
   line-height: 1.0418;
   color: $c-light;
-  opacity: 0;
 
   @media (min-width: $stop-scaling) {
     font-size: 12px;
@@ -188,13 +211,13 @@
   @media (max-width: $tablet) and (orientation: portrait) {
     margin: auto 0;
     font-size: 2.4rem;
-    color: $c-dark;
+    color: var(--state-main);
   }
 
   @media (max-width: $mobile) and (orientation: landscape) {
     margin: auto 0;
     font-size: 1.4rem;
-    color: $c-dark;
+    color: var(--state-main)
   }
 
   ul {
@@ -244,6 +267,7 @@
     display: block;
     color: inherit;
     padding: 0 0.5em 0.5em;
+    transition: all .3s ease-in-out;
 
     &::after {
       content: "";
@@ -252,40 +276,37 @@
       width: 0;
       height: 2px;
       background-color: $c-light;
-      right: 0;
-      transition: width 0.3s ease;
+      left: 0;
+      transition: all .3s ease-in-out;
 
       @media (max-width: $tablet) and (orientation: portrait) {
         left: 0;
         right: 0;
-        background-color: $c-dark;
+        background-color: var(--state-main);
       }
 
       @media (max-width: $mobile) and (orientation: landscape) {
         left: 0;
         right: 0;
-        background-color: $c-dark;
+        background-color: var(--state-main);
       }
     }
 
     &.active {
       &::after {
         width: 100%;
-        display: block;
       }
     }
 
     &:hover,
     &:focus {
-      color: $c-purple;
+      color: var(--state-second);
       outline: none;
 
       &::after {
-        width: 100%;
-        right: auto;
-        left: 0;
         opacity: 1;
-        background-color: $c-purple;
+        background-color: var(--state-second);
+        width: 100%;
       }
     }
   }

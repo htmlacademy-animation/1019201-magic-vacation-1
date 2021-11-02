@@ -30,30 +30,12 @@
   }
 }
 
-@keyframes form__field--field-fade-in {
-  0% {
-    opacity: 0;
-    width: 0;
-    margin-left: auto;
-  }
-
-  10% {
-    opacity: 1;
-  }
-
-  100% {
-    width: 100%;
-  }
-}
-
 .form__field {
-  $form__field--width-animation-duration: 0.7s;
   flex: none;
   margin-right: 3rem;
   padding: 0 5.6rem;
   height: 6rem;
-  width: 100%;
-  max-width: calc(100% - 21rem);
+  width: calc(100% - 21rem);
   text-transform: uppercase;
   font: inherit;
   font-size: 2.4rem;
@@ -62,7 +44,11 @@
   border: 0;
   border-radius: 3rem;
   outline: none;
-  animation: form__field--field-fade-in $form__field--width-animation-duration ease-out;
+  animation: increase-width-from-right 1.5s cubic-bezier(0.165, 0.840, 0.440, 1.000) normal forwards;
+
+  &--win-screen {
+    animation: increase-width-from-right-delay 2s cubic-bezier(0.165, 0.840, 0.440, 1.000) normal forwards;
+  }
 
   &:focus {
     border: 1px solid $c-purple;
@@ -72,7 +58,7 @@
     margin-right: 30px;
     padding: 0 56px;
     height: 60px;
-    max-width: calc(100% - 210px);
+    width: calc(100% - 210px);
     font-size: 24px;
     border-radius: 30px;
   }
@@ -80,26 +66,32 @@
   @media (orientation: portrait) {
     margin-right: 1rem;
     padding: 0 2.5rem;
-    max-width: calc(100% - 5rem);
+    width: calc(100% - 5rem);
     height: 4rem;
     font-size: 1.6rem;
   }
 
   @media (max-width: $tablet) and (orientation: landscape) {
-    max-width: calc(100% - 9rem);
+    width: calc(100% - 9rem);
   }
 
   @media (max-width: $mobile) and (orientation: landscape) {
     margin-right: 1rem;
     padding: 0 2.5rem;
-    max-width: calc(100% - 5rem);
+    width: calc(100% - 5rem);
     height: 4rem;
     font-size: 1.6rem;
   }
 }
 
 .form__button {
-  flex-shrink: 0;
+  &--win-screen {
+    animation: opacity-delay 1.5s ease-in-out;
+  }
+
+  &-text--win-screen {
+    animation: opacity-delay 2.3s ease-in-out;
+  }
 
   @media (orientation: portrait) {
     position: relative;
@@ -114,8 +106,8 @@
     position: relative;
     flex: none;
     padding: 0;
-    width: 8rem;
-    height: 8rem;
+    width: 6rem;
+    height: 6rem;
     font-size: 0;
   }
 
