@@ -68,6 +68,7 @@
   overflow: visible;
 
   path {
+    transform: translateY(-100%);
     transition: stroke-dasharray 0.52s cubic-bezier(0.21, 0, 0, 1);
 
     @for $i from 0 through 8 {
